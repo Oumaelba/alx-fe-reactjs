@@ -6,7 +6,7 @@ function ProfilePage() {
   return (
     <div>
       <h2>Profile Page</h2>
-      <UserInfo />
+      <UserInfo /> {/* No need to pass userData as a prop */}
     </div>
   );
 }
