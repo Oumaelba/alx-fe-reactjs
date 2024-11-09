@@ -1,10 +1,12 @@
 // src/components/ProfilePage.jsx
-import UserInfo from './UserInfo';  // Import UserInfo component
+import React from 'react';
+import UserInfo from './UserInfo';
 
 function ProfilePage() {
   return (
     <div>
-      <UserInfo />  {/* UserInfo now consumes context */}
+      <h2>Profile Page</h2>
+      <UserInfo />
     </div>
   );
 }

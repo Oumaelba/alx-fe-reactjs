@@ -1,10 +1,12 @@
 // src/components/UserInfo.jsx
-import UserDetails from './UserDetails'; // Import UserDetails
+import React from 'react';
+import UserDetails from './UserDetails';
 
 function UserInfo() {
   return (
     <div>
-      <UserDetails /> {/* No need to pass userData as prop */}
+      <h3>User Info</h3>
+      <UserDetails />
     </div>
   );
 }

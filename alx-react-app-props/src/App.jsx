@@ -1,18 +1,18 @@
+// src/App.jsx
+import React, { useState } from 'react';
 import WelcomeMessage from './components/WelcomeMessage';
 import Header from './components/Header';
 import MainContent from './components/MainContent';
 import Footer from './components/Footer';
 import UserProfile from './components/UserProfile';
-// src/App.jsx
 import ProfilePage from './components/ProfilePage';
 import UserContext from './context/UserContext';
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import reactLogo from './assets/react.svg';
+import viteLogo from '/vite.svg';
+import './App.css';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
   const userData = { name: "Jane Doe", email: "jane.doe@example.com" };
 
   return (
@@ -20,11 +20,11 @@ function App() {
       <Header />
       <MainContent />
       <Footer />
-      <UserProfile name="Alice" age="25" bio="Loves hiking and photography" /> {/* UserProfile component with props */}
-      
+      <UserProfile name="Alice" age="25" bio="Loves hiking and photography" />
+
       {/* Context provider to pass user data */}
       <UserContext.Provider value={userData}>
-        <ProfilePage />  {/* ProfilePage now receives userData via Context */}
+        <ProfilePage />
       </UserContext.Provider>
 
       <div>
@@ -37,22 +37,19 @@ function App() {
       </div>
       <h1>Vite + React</h1>
 
-       {/* WelcomeMessage component added here */}
-       <WelcomeMessage />
+      <WelcomeMessage />
 
       <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>
           count is {count}
         </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
+        <p>Edit <code>src/App.jsx</code> and save to test HMR</p>
       </div>
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
       </p>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
