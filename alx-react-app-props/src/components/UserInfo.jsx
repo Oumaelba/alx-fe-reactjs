@@ -6,7 +6,7 @@ function UserInfo() {
   return (
     <div>
       <h3>User Info</h3>
-      <UserDetails />
+      <UserDetails /> {/* No need to pass userData as a prop */}
     </div>
   );
 }
