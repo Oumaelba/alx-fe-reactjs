@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import RecipeList from './components/RecipeList';
 import RecipeDetails from './components/RecipeDetails';
 import AddRecipeForm from './components/AddRecipeForm';
+import DeleteRecipeButton from './components/DeleteRecipeButton';
 import './App.css';
 
 function App() {
