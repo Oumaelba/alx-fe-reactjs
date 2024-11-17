@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import RecipeList from './components/RecipeList';
 import RecipeDetails from './components/RecipeDetails';
 import AddRecipeForm from './components/AddRecipeForm';
-import DeleteRecipeButton from './components/DeleteRecipeButton';
+import SearchBar from './components/SearchBar';
 import './App.css';
 
 function App() {
@@ -13,6 +13,7 @@ function App() {
         <nav>
           <Link to="/">Home</Link>
         </nav>
+        <SearchBar />
         <Routes>
           <Route
             path="/"
