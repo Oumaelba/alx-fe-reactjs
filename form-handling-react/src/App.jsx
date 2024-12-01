@@ -1,5 +1,5 @@
 import React from 'react';
-import FormikForm from './components/FormikForm'; // Import the form component
+import FormikForm from './components/formikForm'; // Import the form component
 
 function App() {
   return (
