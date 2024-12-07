@@ -2,6 +2,9 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'; // Import react-router-dom
+import HomePage from './components/HomePage'; // Import HomePage component
+import RecipeDetail from './components/RecipeDetail';
 
 function App() {
   const [count, setCount] = useState(0)
