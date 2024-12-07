@@ -1,56 +1,50 @@
-import { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import recipeData from '../data.json';
+import data from '../data.json'; // Assuming data.json is in the src directory
 
-function RecipeDetail() {
-  const { id } = useParams(); // Get recipe ID from the URL
+const RecipeDetail = () => {
+  const { id } = useParams(); // Get the recipe ID from the URL
   const [recipe, setRecipe] = useState(null);
-  const navigate = useNavigate(); // For navigation purposes
+  const navigate = useNavigate();
 
+  // Fetch the recipe data based on the ID
   useEffect(() => {
-    // Find the recipe based on ID from the mock data
-    const foundRecipe = recipeData.find((item) => item.id === parseInt(id));
-    if (foundRecipe) {
-      setRecipe(foundRecipe);
-    } else {
-      navigate('/'); // Redirect to home if the recipe is not found
-    }
-  }, [id, navigate]);
+    const foundRecipe = data.find((recipe) => recipe.id === parseInt(id));
+    setRecipe(foundRecipe);
+  }, [id]);
 
   if (!recipe) return <div>Loading...</div>;
 
   return (
-    <div className="container mx-auto p-4">
-      <button
-        className="text-blue-500 mb-4"
-        onClick={() => navigate('/')}
-      >
-        &lt; Back to Home
+    <div className="max-w-3xl mx-auto my-10 p-6 shadow-lg rounded-lg bg-white">
+      <button 
+        onClick={() => navigate("/")}
+        className="text-blue-500 hover:text-blue-700 mb-4">
+        Back to Recipes
       </button>
-      <div className="max-w-4xl mx-auto">
-        <h1 className="text-4xl font-semibold mb-4">{recipe.title}</h1>
-        <img
-          src={recipe.image}
-          alt={recipe.title}
-          className="w-full h-80 object-cover rounded-lg mb-6"
-        />
-        <h2 className="text-2xl font-semibold mb-4">Ingredients</h2>
-        <ul className="list-disc pl-6 text-lg mb-6">
-          {recipe.ingredients &&
-            recipe.ingredients.map((ingredient, index) => (
-              <li key={index}>{ingredient}</li>
-            ))}
+      
+      <div className="text-center mb-6">
+        <img src={recipe.image} alt={recipe.title} className="w-full h-64 object-cover rounded-lg shadow-md"/>
+      </div>
+      
+      <h1 className="text-3xl font-bold text-center text-blue-800 mb-4">{recipe.title}</h1>
+      <p className="text-gray-600 text-lg mb-6">{recipe.summary}</p>
+      
+      <div className="mb-6">
+        <h2 className="text-xl font-semibold text-blue-700 mb-2">Ingredients</h2>
+        <ul className="list-disc pl-6 space-y-2">
+          {recipe.ingredients.map((ingredient, index) => (
+            <li key={index} className="text-gray-700">{ingredient}</li>
+          ))}
         </ul>
-        <h2 className="text-2xl font-semibold mb-4">Cooking Instructions</h2>
-        <ol className="list-decimal pl-6 text-lg">
-          {recipe.instructions &&
-            recipe.instructions.map((step, index) => (
-              <li key={index}>{step}</li>
-            ))}
-        </ol>
+      </div>
+      
+      <div>
+        <h2 className="text-xl font-semibold text-blue-700 mb-2">Cooking Instructions</h2>
+        <p className="text-gray-700">{recipe.instructions}</p>
       </div>
     </div>
   );
-}
+};
 
 export default RecipeDetail;
