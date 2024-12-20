@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { fetchUserData } from './githubService';
+import { fetchUserData } from '../services/githubService';
 
 function Search() {
   const [username, setUsername] = useState('');
@@ -17,7 +17,12 @@ function Search() {
       const data = await fetchUserData(username);
       setUserData(data);
     } catch (err) {
-      setError('Looks like we can’t find the user');
+      // If error is related to user not found, show a custom message
+      if (err.response && err.response.status === 404) {
+        setError('Looks like we can’t find the user');
+      } else {
+        setError('An error occurred. Please try again later.');
+      }
     } finally {
       setLoading(false);
     }
