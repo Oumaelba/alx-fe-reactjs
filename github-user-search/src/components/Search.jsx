@@ -8,6 +8,7 @@ function Search() {
   const [userData, setUserData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [page, setPage] = useState(1);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -16,10 +17,23 @@ function Search() {
     setUserData([]);  // Clear previous user data
 
     try {
-      const data = await fetchAdvancedUserData(username, location, minRepos);
-      setUserData(data);
+      const data = await fetchAdvancedUserData(username, location, minRepos, page);
+      setUserData(data.items);
     } catch (err) {
       setError('An error occurred. Please try again later.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const loadMoreResults = async () => {
+    setPage(page + 1);
+    setLoading(true);
+    try {
+      const data = await fetchAdvancedUserData(username, location, minRepos, page + 1);
+      setUserData([...userData, ...data.items]);
+    } catch (err) {
+      setError('An error occurred while loading more results.');
     } finally {
       setLoading(false);
     }
@@ -87,6 +101,15 @@ function Search() {
           ))
         ) : (
           <p>No users found based on your criteria.</p>
+        )}
+
+        {userData.length > 0 && (
+          <button
+            onClick={loadMoreResults}
+            className="mt-4 bg-green-500 text-white py-2 px-4 rounded-md"
+          >
+            Load More
+          </button>
         )}
       </div>
     </div>
