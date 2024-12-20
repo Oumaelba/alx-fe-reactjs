@@ -19,7 +19,7 @@ function Search() {
     } catch (err) {
       // Handling errors, including user not found (404)
       if (err.response && err.response.status === 404) {
-        setError("Looks like we can't find the user.");
+        setError("Looks like we cant find the user");
       } else {
         setError('An error occurred. Please try again later.');
       }
