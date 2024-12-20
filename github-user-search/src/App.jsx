@@ -1,13 +1,21 @@
-import React from 'react';
-import Search from './components/Search';
+import React, { useState } from 'react';
+import SearchForm from './SearchForm';
+import SearchResults from './SearchResults';
 
-const App = () => {
+function App() {
+  const [query, setQuery] = useState(null);
+
+  const handleSearch = (searchQuery) => {
+    setQuery(searchQuery);
+  };
+
   return (
-    <div>
-      <h1>GitHub User Search Application</h1>
-      <Search />
+    <div className="container mx-auto">
+      <h1 className="text-2xl font-bold mb-4">GitHub User Search</h1>
+      <SearchForm onSearch={handleSearch} />
+      {query && <SearchResults query={query} />}
     </div>
   );
-};
+}
 
 export default App;
