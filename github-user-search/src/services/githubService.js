@@ -1,25 +1,7 @@
-const fetchGitHubUsers = async (query) => {
-  const { username, location, minRepos } = query;
-  let apiUrl = `https://api.github.com/search/users?q=${username}`;
+import axios from 'axios';
 
-  // Add location filter if available
-  if (location) {
-    apiUrl += `+location:${location}`;
-  }
-
-  // Add minRepos filter if available
-  if (minRepos) {
-    apiUrl += `+repos:>=${minRepos}`;
-  }
-
-  try {
-    const response = await fetch(apiUrl);
-    const data = await response.json();
-    return data.items;
-  } catch (error) {
-    console.error('Error fetching GitHub users:', error);
-    return [];
-  }
+// Function to fetch user data based on the username
+export const fetchUserData = async (username) => {
+  const response = await axios.get(`https://api.github.com/users/${username}`);
+  return response.data;
 };
-
-export { fetchGitHubUsers };
