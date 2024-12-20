@@ -10,16 +10,16 @@ function Search() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    setError(null);
-    setUserData(null);
+    setError(null);  // Reset the error message on each search attempt
+    setUserData(null);  // Clear previous user data
 
     try {
       const data = await fetchUserData(username);
       setUserData(data);
     } catch (err) {
-      // If error is related to user not found, show a custom message
+      // Handling errors, including user not found (404)
       if (err.response && err.response.status === 404) {
-        setError('Looks like we can’t find the user');
+        setError("Looks like we can't find the user.");
       } else {
         setError('An error occurred. Please try again later.');
       }
